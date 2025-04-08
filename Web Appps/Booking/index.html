@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Подключение стилей FullCalendar -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet" />
+    
+    <!-- Подключение FullCalendar JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+    
+    <!-- Подключение Supabase JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    
+    <script defer src="script.js"></script>
+
+    <link rel="stylesheet" href="/static/Club/style.css">
+<script src="/static/Club/script.js"></script>
+
+
+    <style>
+        /* Стили для календаря и всплывающего окна */
+        #calendar {
+            margin: 20px auto;
+            width: 90%;
+        }
+
+        .schedule-popup {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            position: absolute;
+            top: 100px;
+            width: 80%;
+            margin: auto;
+            z-index: 100;
+        }
+
+        .time-slot {
+            display: inline-block;
+            width: 80px;
+            margin: 5px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Цвета для различных состояний бронирования */
+        .available {
+            background-color: #808080;
+        }
+        .booked-2hours {
+            background-color: red;
+        }
+        .booked-1helmet {
+            background-color: blue;
+        }
+        .booked-2helmets {
+            background-color: #ff1493;
+        }
+        .booked-4helmets {
+            background-color: #800080;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Бронирование VR-сеанса</h1>
+
+        <!-- Календарь -->
+        <div id="calendar"></div>
+
+        <!-- Всплывающее окно с расписанием -->
+        <div id="schedule-popup" class="schedule-popup">
+            <h3 id="selected-date"></h3>
+            <div id="schedule-times">
+                <!-- Время будет загружаться через JS -->
+            </div>
+        </div>
+
+        <!-- Форма для бронирования -->
+        <label for="date">Выберите дату:</label>
+        <input type="date" id="date">
+
+        <label for="time">Выберите время:</label>
+        <select id="time">
+            <!-- Временные слоты будут добавляться динамически через JS -->
+        </select>
+
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name">
+
+        <label for="phone">Телефон:</label>
+        <input type="tel" id="phone">
+
+        <button id="book-btn">Забронировать</button>
+        <p id="status"></p>
+
+        <div id="booked-times">
+            <h3>Забронированные временные слоты:</h3>
+            <!-- Здесь будут отображаться забронированные слоты -->
+        </div>
+    </div>
+
+    <!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Подключение стилей FullCalendar -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet" />
+    
+    <!-- Подключение FullCalendar JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+    
+    <!-- Подключение Supabase JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    
+    <script defer src="script.js"></script>
+
+    <style>
+        /* Стили для календаря и всплывающего окна */
+        #calendar {
+            margin: 20px auto;
+            width: 90%;
+        }
+
+        .schedule-popup {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            position: absolute;
+            top: 100px;
+            width: 80%;
+            margin: auto;
+            z-index: 100;
+        }
+
+        .time-slot {
+            display: inline-block;
+            width: 80px;
+            margin: 5px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Цвета для различных состояний бронирования */
+        .available {
+            background-color: #808080;
+        }
+        .booked-2hours {
+            background-color: red;
+        }
+        .booked-1helmet {
+            background-color: blue;
+        }
+        .booked-2helmets {
+            background-color: #ff1493;
+        }
+        .booked-4helmets {
+            background-color: #800080;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Бронирование VR-сеанса</h1>
+
+        <!-- Календарь -->
+        <div id="calendar"></div>
+
+        <!-- Всплывающее окно с расписанием -->
+        <div id="schedule-popup" class="schedule-popup">
+            <h3 id="selected-date"></h3>
+            <div id="schedule-times">
+                <!-- Время будет загружаться через JS -->
+            </div>
+        </div>
+
+        <!-- Форма для бронирования -->
+        <label for="date">Выберите дату:</label>
+        <input type="date" id="date">
+
+        <label for="time">Выберите время:</label>
+        <select id="time">
+            <!-- Временные слоты будут добавляться динамически через JS -->
+        </select>
+
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name">
+
+        <label for="phone">Телефон:</label>
+        <input type="tel" id="phone">
+
+        <button id="book-btn">Забронировать</button>
+        <p id="status"></p>
+
+        <div id="booked-times">
+            <h3>Забронированные временные слоты:</h3>
+            <!-- Здесь будут отображаться забронированные слоты -->
+        </div>
+    </div>
+
+    <script>
+        // Подключение к Supabase
+        const supabaseUrl = 'https://ctetxfbqveajwirsnknq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0ZXR4ZmJxdmVhandpcnNua25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2MDQwODAsImV4cCI6MjA1OTE4MDA4MH0.2oC0cDKz2D0NS8qrQ2nFt6p9iuMI4SwzdWMVibap5cU';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Функция для загрузки расписания на выбранную дату
+        async function loadSchedule(date) {
+            const { data: bookings, error } = await supabase
+                .from('bookings')
+                .select('*')
+                .eq('date', date);
+
+            if (error) {
+                console.error('Ошибка загрузки бронирований:', error);
+                return;
+            }
+
+            const scheduleTimes = document.getElementById('schedule-times');
+            scheduleTimes.innerHTML = ''; // Очистим старые данные
+
+            const timeSlots = getAvailableTimeSlots(date);
+
+            // Для каждого времени проверим, занято ли оно
+            timeSlots.forEach(slot => {
+                const booking = bookings.find(b => b.time === slot);
+                const slotDiv = document.createElement('div');
+                slotDiv.classList.add('time-slot');
+
+                // Определяем цвет в зависимости от бронирования
+                if (booking) {
+                    if (booking.helmets === 4) {
+                        slotDiv.classList.add('booked-4helmets');
+                    } else if (booking.helmets === 3) {
+                        slotDiv.classList.add('booked-2helmets');
+                    } else if (booking.helmets === 2) {
+                        slotDiv.classList.add('booked-1helmet');
+                    } else if (booking.helmets === 1) {
+                        slotDiv.classList.add('booked-1helmet');
+                    }
+                } else {
+                    slotDiv.classList.add('available');
+                }
+
+                slotDiv.textContent = slot;
+                scheduleTimes.appendChild(slotDiv);
+            });
+        }
+
+        // Функция для получения доступных временных слотов в зависимости от дня недели
+        function getAvailableTimeSlots(date) {
+            const dayOfWeek = new Date(date).getDay();
+            let startTime, endTime;
+
+            if (dayOfWeek === 0 || dayOfWeek === 6) {
+                // Выходные дни (с 11:00 до 21:00)
+                startTime = 11;
+                endTime = 21;
+            } else {
+                // Будние дни (с 14:00 до 21:00)
+                startTime = 14;
+                endTime = 21;
+            }
+
+            let timeSlots = [];
+            for (let hour = startTime; hour < endTime; hour++) {
+                timeSlots.push(`${hour}:00-${hour + 1}:00`);
+                timeSlots.push(`${hour}:10-${hour + 1}:10`);
+            }
+
+            return timeSlots;
+        }
+
+        // Инициализация календаря
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+                initialView: 'dayGridMonth',
+                dateClick: function (info) {
+                    const selectedDate = info.dateStr;
+                    document.getElementById('selected-date').textContent = `Расписание на ${selectedDate}`;
+                    loadSchedule(selectedDate);
+                    document.getElementById('schedule-popup').style.display = 'block';
+                }
+            });
+            calendar.render();
+        });
+
+        // Закрытие всплывающего окна
+        document.getElementById('schedule-popup').addEventListener('click', () => {
+            document.getElementById('schedule-popup').style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
