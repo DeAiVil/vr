@@ -1,8 +1,0 @@
-flask  
-python-telegram-bot==20.7  
-tensorflow  
-pandas  
-numpy  
-scikit-learn  
-PyMuPDF  
-python-dotenv
