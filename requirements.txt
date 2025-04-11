@@ -4,6 +4,6 @@ tensorflow
 pandas
 numpy
 scikit-learn
-supabase-py
+supabase-py==1.0.3
 PyMuPDF
 python-dotenv
