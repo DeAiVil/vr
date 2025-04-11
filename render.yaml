@@ -2,7 +2,13 @@ services:
   - type: web
     name: vr-club
     env: python
+<<<<<<< HEAD
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: python app.py
     pythonVersion: 3.10.13
+=======
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    pythonVersion: "3.10"  # Указание версии Python, которая поддерживает библиотеки
+>>>>>>> origin/main
