@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Бронирование VR</title>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Стили -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      position: relative;
+    }
+
+    .wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .calendar-container {
+      flex: 2;
+      margin-right: 20px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .calendar-header button {
+      background: none;
+      border: none;
+      color: #9c27b0;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .calendar-header h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 10px;
+    }
+
+    .calendar-day {
+      background-color: #333;
+      padding: 10px;
+      border-radius: 8px;
+      min-height: 120px;
+      position: relative;
+    }
+
+    .calendar-day span.date-number {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #9c27b0;
+    }
+
+    .booking-slot {
+      position: relative;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-bottom: 4px;
+      cursor: default;
+      color: #fff;
+    }
+
+    .slot-сеанс {
+      background-color: #9c27b0;
+    }
+
+    .slot-аренда {
+      background-color: #b71c1c;
+    }
+
+    .booking-slot:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -28px;
+      left: 0;
+      background-color: #444;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .container {
+      flex: 1;
+      background-color: #222;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      max-width: 400px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    button[type="submit"] {
+      background-color: #9c27b0;
+      border: none;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #7b1fa2;
+    }
+
+    /* Пульсирующие круги */
+    .pulse-circle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(153, 58, 170, 0.937);
+      animation: pulse 3s infinite ease-in-out;
+      filter: blur(8px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.5);
+        opacity: 0.4;
+      }
+      50% {
+        transform: scale(1);
+        opacity: 0.1;
+      }
+      100% {
+        transform: scale(0.5);
+        opacity: 0.4;
+      }
+    }
+    .links-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .instruction {
+      background-color: #333;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+ <!-- Пульсирующие круги -->
+<!-- Фоновые круги (уменьшенные) -->
+<div class="pulse-circle" style="top: 10%; left: 5%; width: 100px; height: 100px;"></div>
+<div class="pulse-circle" style="top: 30%; left: 10%; width: 130px; height: 130px;"></div>
+<div class="pulse-circle" style="top: 50%; right: 10%; width: 150px; height: 150px;"></div>
+<div class="pulse-circle" style="top: 20%; left: 40%; width: 120px; height: 120px;"></div>
+<div class="pulse-circle" style="top: 60%; right: 30%; width: 140px; height: 140px;"></div>
+<div class="pulse-circle" style="top: 80%; left: 20%; width: 110px; height: 110px;"></div>
+<div class="pulse-circle" style="top: 75%; right: 5%; width: 90px; height: 90px;"></div>
+<div class="pulse-circle" style="top: 15%; right: 25%; width: 100px; height: 100px;"></div>
+
+
+  <div class="wrapper">
+    <!-- Календарь -->
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button id="prev-month">←</button>
+        <h2 id="month-year"></h2>
+        <button id="next-month">→</button>
+      </div>
+      <div class="calendar" id="calendar"></div>
+    </div>
+
+    <!-- Форма бронирования -->
+    <div class="container">
+      <h1>Бронирование VR</h1>
+      <form id="booking-form">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" required>
+
+        <label for="phone">Телефон:</label>
+        <input type="tel" id="phone" required>
+
+        <label for="date">Дата:</label>
+        <input type="date" id="date" required>
+
+        <label for="time">Время начала:</label>
+        <input type="time" id="time" required>
+
+        <label for="endTime">Время окончания:</label>
+        <input type="time" id="endTime" required>
+
+        <label for="type">Тип бронирования:</label>
+        <select id="type" required>
+          <option value="">-- Выберите --</option>
+          <option value="сеанс">Сеанс</option>
+          <option value="аренда">Аренда</option>
+        </select>
+
+        <label for="headsets">Количество шлемов (1-4):</label>
+        <input type="number" id="headsets" min="1" max="4" required>
+
+        <button type="submit">Забронировать</button>
+      </form>
+
+      <!-- Кнопки для перехода -->
+      <div class="links-container">
+        <a href="https://benevolent-khapse-931b85.netlify.app/" style="color: #9c27b0;">Главный сайт</a>
+        <a href="https://kaleidoscopic-croissant-9e432e.netlify.app/" style="color: #9c27b0;">Каталог</a>
+      </div>
+
+      <!-- Инструкция -->
+      <div class="instruction">
+        <h3>Инструкция:</h3>
+        <p>Красный слот — забронирован весь клуб (4 шлема).</p>
+        <p>Фиолетовый слот (n — количество шлемов) — есть возможность для одиночного, напарнического или троих игроков поиграть в зависимости от занятых шлемов.</p>
+        <p>Время работы клуба: Будние дни с 14:00 до 21:00, выходные с 11:00 до 21:00.</p>
+        <p>Просьба указывать свою бронь с интервалом 15 минут, чтобы администрация могла успеть подготовиться.</p>
+        <p>Пример: аренда с 14:00 до 15:10, значит следующая бронь будет с 15:25 до 16:25.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAvMH5NA7iBX9UZMejGiVLQE4tycKd1M_Y",
+      authDomain: "booking-a897d.firebaseapp.com",
+      databaseURL: "https://booking-a897d-default-rtdb.firebaseio.com",
+      projectId: "booking-a897d",
+      storageBucket: "booking-a897d.appspot.com",
+      messagingSenderId: "104669912923",
+      appId: "1:104669912923:web:4706ab37256c380a3f047e",
+      measurementId: "G-RRYB518G4Q"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    let currentDate = new Date();
+
+    document.getElementById('prev-month').addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      loadBookings();
+    });
+    document.getElementById('next-month').addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      loadBookings();
+    });
+
+    async function loadBookings() {
+      const snapshot = await db.collection('bookings').get();
+      const bookings = snapshot.docs.map(doc => doc.data());
+
+      renderCalendar(bookings);
+    }
+
+    function renderCalendar(bookings) {
+      const calendar = document.getElementById('calendar');
+      calendar.innerHTML = '';
+
+      const monthYear = document.getElementById('month-year');
+      const monthNames = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+      monthYear.textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+
+      const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+      const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+      for (let i = 0; i < firstDay.getDay(); i++) {
+        const empty = document.createElement('div');
+        calendar.appendChild(empty);
+      }
+
+      for (let d = 1; d <= lastDay.getDate(); d++) {
+        const dateStr = new Date(currentDate.getFullYear(), currentDate.getMonth(), d).toISOString().split('T')[0];
+        const dayEl = document.createElement('div');
+        dayEl.className = 'calendar-day';
+        dayEl.dataset.date = dateStr;
+
+        const number = document.createElement('span');
+        number.className = 'date-number';
+        number.textContent = d;
+        dayEl.appendChild(number);
+
+        bookings.filter(b => b.date === dateStr)
+          .forEach(b => {
+            const slot = document.createElement('div');
+            slot.className = 'booking-slot slot-' + b.type;
+            slot.textContent = `${b.time}–${b.endTime}`;
+            slot.setAttribute('data-tooltip', `${b.type} (${b.headsets} шлемов)`);
+            dayEl.appendChild(slot);
+          });
+
+        calendar.appendChild(dayEl);
+      }
+    }
+
+    document.getElementById('booking-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        endTime: document.getElementById('endTime').value,
+        type: document.getElementById('type').value,
+        headsets: document.getElementById('headsets').value
+      };
+      db.collection('bookings').add(data).then(() => {
+        alert('Бронирование успешно добавлено');
+        loadBookings();
+      });
+    });
+
+    loadBookings();
+    // Инициализация: активируем первый таб и показываем игры
+const defaultTab = document.querySelector(".tab.active") || tabs[0];
+if (defaultTab) {
+  defaultTab.classList.add("active");
+  displayGames(defaultTab.dataset.category);
+}
+document.getElementById('go-home').addEventListener('click', function() {
+  // Открытие первой ссылки
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.openLink('https://benevolent-khapse-931b85.netlify.app/', { try_instant_view: true });
+  } else {
+    window.location.href = 'https://benevolent-khapse-931b85.netlify.app/';
+  }
+
+  // Открытие второй ссылки
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.openLink('https://kaleidoscopic-croissant-9e432e.netlify.app/', { try_instant_view: true });
+  } else {
+    window.location.href = 'https://kaleidoscopic-croissant-9e432e.netlify.app/';
+  }
+});
+  </script>
+</body>
+</html>

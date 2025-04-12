@@ -1,0 +1,243 @@
+/* 1. Глобальный box‑sizing и сброс отступов */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Основные стили */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0a0a0f;
+  color: #f0f0ff;
+}
+
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #a74cff;
+  font-size: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+/* 3. Фильтры и поиск */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.filters input,
+.filters select {
+  padding: 0.625rem;
+  background-color: #1e1e2e;
+  border: 1px solid #4c0070;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.filters input:focus,
+.filters select:focus {
+  outline: 2px solid #a74cff;
+  outline-offset: 2px;
+}
+
+/* 4. Вкладки */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.tab {
+  background-color: transparent;
+  border: 2px solid #a74cff;
+  color: #fff;
+  padding: 0.625rem 1.25rem;
+  margin: 0 0.3125rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab:hover {
+  background-color: rgba(167, 76, 255, 0.2);
+}
+
+.tab:focus {
+  outline: 2px solid #a74cff;
+  outline-offset: 2px;
+}
+
+.tab.active {
+  background-color:rgb(91, 24, 153);
+  color: #000;
+}
+
+/* 5. Игровые карточки */
+#gamesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+}
+
+.game-card {
+  background-color: #1e1e1e;
+  border-radius: 0.625rem;
+  width: 350px; /* Увеличена ширина карточки */
+  padding: 1.25rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  border: 2px solid #4c0070; /* Добавлена рамка вокруг карточки */
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.game-image {
+  width: 100%;
+  height: 200px; /* Увеличена высота картинки */
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 3px solid #a74cff; /* Добавлена рамка вокруг картинки */
+}
+
+.game-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.625rem;
+  color: #fff;
+}
+
+.game-info {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 0.3125rem;
+}
+
+
+/* 6. Кнопка тизера */
+.teaser-btn {
+  display: inline-block;
+  margin-top: 0.625rem;
+  background-color: #ff4c9f;
+  color: #fff;
+  padding: 0.3125rem 0.625rem;
+  text-decoration: none;
+  border-radius: 0.3125rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.teaser-btn:hover,
+.teaser-btn:focus {
+  background-color: #ff2b7f;
+  outline: none;
+}
+
+/* 7. Адаптивность */
+@media (max-width: 900px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .game-card {
+    width: 300px;
+    padding: 1rem;
+  }
+
+  .game-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .filters,
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters input,
+  .filters select,
+  .tab {
+    width: 100%;
+    text-align: center;
+  }
+
+  #gamesContainer {
+    justify-content: center;
+  }
+
+  .game-card {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .game-image {
+    height: 160px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .game-title {
+    font-size: 1rem;
+  }
+
+  .game-info {
+    font-size: 0.8rem;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .nav-button {
+    width: 100%;
+  }
+}
+
+
+/* 8. Кнопки навигации */
+.navigation-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.nav-button {
+  background-color: #a74cff;
+  color: white;
+  padding: 0.625rem 1.25rem;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.nav-button:hover {
+  background-color: #8c33e7;
+}
+
+.nav-button:focus {
+  outline: 2px solid #a74cff;
+  outline-offset: 2px;
+}

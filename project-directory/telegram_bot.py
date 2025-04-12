@@ -62,11 +62,11 @@ async def handle_end_time(update: Update, context: CallbackContext):
 async def start(update: Update, context: CallbackContext):
     keyboard = [
         [
-            InlineKeyboardButton("Информация о клубе", web_app=WebAppInfo(url="https://legendary-lollipop-09c3c1.netlify.app/")),
+            InlineKeyboardButton("Unrealplace_brest", web_app=WebAppInfo(url="https://680cf2795c30c4bd8894843f--rainbow-cocada-868631.netlify.app/")),
             InlineKeyboardButton("Подобрать игру", web_app=WebAppInfo(url="https://yourdomain.com/booking")),
         ],
         [
-            InlineKeyboardButton("Каталог игр", web_app=WebAppInfo(url="https://yourdomain.com/catalog")),
+            InlineKeyboardButton("Каталог игр", web_app=WebAppInfo(url="https://kaleidoscopic-croissant-9e432e.netlify.app/")),
             InlineKeyboardButton("Цены", callback_data="prices"),
         ],
         [
@@ -74,16 +74,52 @@ async def start(update: Update, context: CallbackContext):
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text("Добро пожаловать в клуб виртуальной реальности!", reply_markup=reply_markup)
+    async def start(update: Update, context: CallbackContext):
+    await update.message.reply_text("""
+Добро пожаловать в клуб виртуальной реальности — Нереальное место!
+Этот телеграм-бот — маленький помощник для наших администраторов, его зовут Нири :)
+
+Вот, что он может:
+- **Кнопка "Unrealplace_brest"** — главная веб-страница клуба, где вы найдете общую информацию о нас.
+- **Кнопка "Подобрать игру"** — веб-страница с использованием ИИ, который обработает ваши предпочтения и предложит подходящие игры.
+- **Кнопка "Каталог"** — список всех игр, в которые можно поиграть с друзьями.
+- **Кнопка "Цены"** — быстрый доступ к расценкам, чтобы не искать их на сайте.
+- **Кнопка "Связаться с администраторами"** — переход в наш Instagram с увлекательными роликами и контактами для связи.
+
+Надеемся, вам понравится наш  VR-клуб ! :)
+""", reply_markup=reply_markup)
+
 
 # Обработчики для кнопок (Цены и Контакт)
 async def prices(update: Update, context: CallbackContext):
     await update.callback_query.answer(text="Обрабатываю запрос...")
-    await update.callback_query.edit_message_text("Цены на наши услуги:\n- 1 час игры: 500 рублей\n- 2 часа игры: 900 рублей")
+    await update.callback_query.edit_message_text("""
+Цены на наши услуги:
+
+Цена за одного игрока:
+--------------------------------------
+Будние дни            Выходные дни
+15 мин - 10 руб      15 мин - 15 руб
+30 мин - 15 руб      30 мин - 20 руб
+45 мин - 20 руб      45 мин - 25 руб
+1 час  - 30 руб      1 час  - 30 руб
+
+Аренда клуба (4 шлема):
+--------------------------------------
+Будние дни              Выходные дни
+1 час - 80 руб          1 час - 90 руб
+2 часа - 140 руб        2 часа - 160 руб
+
+За дополнительными расценками рассмотрите на нашем сайте: Unrealplace """)
+
 
 async def contact(update: Update, context: CallbackContext):
     await update.callback_query.answer()
-    await update.callback_query.edit_message_text("Вы можете связаться с администратором по номеру: +7 123 456 78 90")
+    await update.callback_query.edit_message_text("""
+Вы можете связаться с администратором по номеру: +375 33 620 - 25 - 54
+
+Также вы можете написать нам в Instagram: [Перейти в Instagram](https://www.instagram.com/unrealplace_brest?utm_source=qr&igsh=c2h3Z2JnamZsbHkz)
+    """, parse_mode='Markdown')
 
 # Добавление обработчиков в основной код
 application = Application.builder().token(TELEGRAM_TOKEN).build()

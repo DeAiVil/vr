@@ -21,3 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", reveal);
     reveal();
 });
+
+function toggleMenu() {
+    const menu = document.getElementById('navMenu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+}

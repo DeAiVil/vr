@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Каталог VR-игр</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Каталог VR-игр</h1>
+
+    <!-- Кнопки для перехода -->
+    <div class="navigation-buttons">
+      <button id="go-home" class="nav-button">На главную</button>
+      <a href="https://musical-hotteok-033703.netlify.app/" class="nav-button">Перейти к бронированию</a>
+    </div>
+
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Поиск по названию..." />
+      <select id="genreFilter">
+        <option value="">Жанр</option>
+        <option value="Экшен">Экшен</option>
+        <option value="Хоррор">Хоррор</option>
+        <option value="Ритм-игра">Ритм-игра</option>
+        <option value="Simulator">Симулятор</option>
+        <option value="Relax">Relax</option>
+        <option value="Action">Action</option>
+      </select>
+      <select id="ageFilter">
+        <option value="">Возраст</option>
+        <option value="10">от 10 лет</option>
+        <option value="12">от 12 лет</option>
+        <option value="15">от 15 лет</option>
+      </select>
+      <select id="playersFilter">
+        <option value="">Игроков</option>
+        <option value="1">1</option>
+        <option value="1-2">1-2</option>
+        <option value="1-4">1-4</option>
+      </select>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-category="Coop">Coop</button>
+      <button class="tab" data-category="Horror">Horror</button>
+      <button class="tab" data-category="Music">Music</button>
+      <button class="tab" data-category="Simulator">Simulator</button>
+      <button class="tab" data-category="Relax">Relax</button>
+      <button class="tab" data-category="Action">Action</button>
+      
+      
+    </div>
+
+
+
+    <div id="gamesContainer" class="games-grid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

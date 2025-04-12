@@ -32,6 +32,7 @@ body {
     height: 100%;
     opacity: 0.5;
     pointer-events: none;
+    border: none;  /* Убирает рамку вокруг видео */
 }
 
 .overlay {
@@ -112,6 +113,80 @@ body {
     box-shadow: 0 0 20px #ff00ff, 0 0 30px #8a2be2;
     background: rgba(255, 0, 255, 0.1); /* Добавлен эффект при наведении */
 }
+
+/*Пространство для текста*/
+
+/* Отступы сверху и снизу */
+.spacer {
+    height: 50px;
+}
+.text-section.cyberpunk-text {
+    position: relative; /* Обязательно для абсолютного позиционирования кругов */
+    margin: 0 auto;
+    padding: 40px 30px;
+    max-width: 900px;
+    font-size: 20px;
+    line-height: 1.7;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.8);
+    overflow: hidden; /* Чтобы круги не вылезали за края */
+}
+
+/* Контейнер для кругов */
+.background-circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Чтобы круги не мешали кликам по тексту */
+    z-index: 1;
+}
+
+/* Отдельные круги */
+.neon-circle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,0,255,0.4) 0%, transparent 70%);
+    animation: neon-pulse 4s infinite ease-in-out;
+}
+
+/* Анимация пульсации круга */
+@keyframes neon-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Текст без круга внутри */
+.neon-text {
+    position: relative;
+    z-index: 2; /* Текст выше фона */
+    color: #f0f0ff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    padding: 10px 0;
+    text-shadow: 
+        0 0 10pxrgb(0, 0, 0), 
+        0 0 20px #ff00ff, 
+        0 0 30px #ff00ff, 
+        0 0 50px #ff00ff;
+}
+
+/* Отступы для абзацев */
+.text-content p {
+    margin-bottom: 20px;
+}
+
+
 
 /* 🔹 Кнопка с Ценой */
 .main-button {
@@ -316,7 +391,6 @@ body {
     align-items: center; /* Выравниваем элементы по центру */
 }
 
-/* Заголовок и описание раздела */
 .helmets-section h2 {
     font-size: 35px;
     color: #9b59b6; /* фиолетовый */
@@ -331,7 +405,6 @@ body {
     margin-bottom: 20px; /* уменьшены отступы для компактности */
 }
 
-/* Кнопка по центру */
 .helmets-section .btn-container {
     display: flex;
     justify-content: center; /* Выравниваем кнопку по центру */
@@ -339,7 +412,6 @@ body {
     gap: 10px; /* Добавляем немного отступа между текстом и кнопкой */
 }
 
-/* Стиль кнопки */
 .helmets-section .btn-container .btn {
     background-color: #9b59b6; /* фиолетовый фон */
     color: #fff;
@@ -354,13 +426,10 @@ body {
     transition: background-color 0.3s ease;
 }
 
-/* Эффект при наведении на кнопку */
 .helmets-section .btn-container .btn:hover {
     background-color: #8e44ad; /* более темный фиолетовый при наведении */
 }
 
-
-/* Контейнер для шлемов */
 .helmets-container {
     display: flex;
     flex-wrap: wrap;
@@ -369,7 +438,6 @@ body {
     padding: 20px;
 }
 
-/* Стиль для каждого шлема */
 .helmet {
     text-align: center;
     background-color: #000000;
@@ -384,7 +452,6 @@ body {
     justify-content: space-between;
 }
 
-/* Описание шлема */
 .helmet p {
     font-size: 1rem;
     color: #fff;
@@ -392,7 +459,6 @@ body {
     text-align: center;
 }
 
-/* Изображение шлема */
 .helmet img {
     width: 100%;
     height: auto;
@@ -401,86 +467,114 @@ body {
     border-radius: 10px;
 }
 
-
-/* Эффект при наведении на шлем */
 .helmet:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px rgba(155, 89, 182, 1); /* усиленное неоновое свечение */
 }
 
-/* Карта и Контакты*/
-/* Основные стили */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
+/* Общие настройки для мобильных устройств */
+@media (max-width: 768px) {
+    /* Заголовки */
+    .header-title {
+        font-size: 30px; /* Уменьшение размера шрифта */
+    }
+    .header-contacts {
+        font-size: 20px; /* Уменьшение размера шрифта */
+        padding: 8px 15px; /* Уменьшение отступов */
+    }
+    .hero-title {
+        font-size: 30px; /* Уменьшение шрифта */
+    }
+
+    /* Кнопки */
+    .btn, .btn-book, .btn-select {
+        font-size: 18px; /* Уменьшение размера шрифта */
+        padding: 12px 25px; /* Уменьшение отступов */
+        width: 250px; /* Ширина кнопок */
+    }
+    .main-button {
+        width: 300px; /* Уменьшение ширины кнопки */
+        font-size: 18px; /* Уменьшение размера шрифта */
+    }
+    .toggle-button {
+        width: 150px; /* Уменьшение ширины кнопки */
+        font-size: 16px; /* Уменьшение размера шрифта */
+    }
+
+    /* Видеофон */
+    .video-section {
+        height: 80vh; /* Высота видеофона для мобильных устройств */
+    }
+    .video-bg {
+        height: 80vh; /* Адаптация фона */
+    }
+
+    /* Текстовые блоки */
+    .text-section.cyberpunk-text {
+        padding: 20px 10px; /* Уменьшение отступов */
+        font-size: 16px; /* Уменьшение размера шрифта */
+    }
+
+    /* Блоки с ценами */
+    .prices-container {
+        flex-direction: column; /* Выводим блоки в колонку */
+        gap: 15px; /* Уменьшение расстояния между блоками */
+    }
+    .price-block {
+        width: 85%; /* Уменьшение ширины блоков */
+    }
+
+    /* Кнопка аренды клуба */
+    .club-rental-button {
+        width: 85%; /* Ширина кнопки */
+        font-size: 18px; /* Уменьшение шрифта */
+        padding: 12px 30px; /* Уменьшение отступов */
+    }
+
+    /* Раздел игр */
+    .games {
+        padding: 10px;
+    }
+    .games h2 {
+        font-size: 2rem; /* Уменьшение размера заголовка */
+    }
+    .games p {
+        font-size: 1rem; /* Уменьшение размера шрифта */
+    }
 }
 
-/* Обёртка для выравнивания футера */
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Фиксирует футер внизу */
-}
-
-/* Контакты */
-.contacts {
-    text-align: center;
-    padding: 40px 20px;
-    flex: 1; /* Заполняет свободное пространство */
-}
-
-.contacts h2 {
-    font-size: 35px;
-    color: #9b59b6;
-    border: 2px solid #9b59b6;
-    padding: 10px;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-/* Контейнер для блока с контактами и картой */
-.contacts-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 900px; /* Ограничиваем ширину */
-    margin: 0 auto;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-/* Блок с текстовой информацией */
-.contact-info {
-    text-align: left;
-    font-size: 18px;
-    max-width: 400px;
-    flex: 1;
-}
-
-/* Блок с картой */
-.map-container {
-    flex: 1;
-    max-width: 450px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(155, 89, 182, 0.7);
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 300px;
-    border-radius: 10px;
-}
-
-/* Футер */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #000;
-    color: #fff;
-    font-size: 16px;
+/* Для экрана менее 480px */
+@media (max-width: 480px) {
+    /* Уменьшение всех шрифтов для очень маленьких экранов */
+    .header-title, .header-contacts, .hero-title {
+        font-size: 24px;
+    }
+    .btn, .btn-book, .btn-select {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    .main-button {
+        width: 100%;
+        font-size: 16px;
+    }
+    .toggle-button {
+        width: 120px;
+        font-size: 14px;
+    }
+    .video-section {
+        height: 50vh;
+    }
+    .video-bg {
+        height: 50vh;
+    }
+    .text-section.cyberpunk-text {
+        padding: 10px 5px;
+    }
+    .price-block {
+        width: 90%;
+    }
+    .club-rental-button {
+        width: 90%;
+        font-size: 16px;
+    }
 }
