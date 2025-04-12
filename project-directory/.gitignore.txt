@@ -1,23 +1,10 @@
-# Python bytecode
 *.pyc
 *.pyo
-__pycache__
-
-# Файлы виртуальной среды
+__pycache__/
 venv/
 env/
-ENV/
-
-# Конфигурационные файлы IDE
+*.env
 .vscode/
 .idea/
-
-# Файлы на базе системы окружения
-*.env
-
-# Логи
 *.log
-
-# Операционные системы
 .DS_Store
-Thumbs.db
