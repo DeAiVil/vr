@@ -180,7 +180,6 @@
 </head>
 <body>
  <!-- Пульсирующие круги -->
-<!-- Фоновые круги (уменьшенные) -->
 <div class="pulse-circle" style="top: 10%; left: 5%; width: 100px; height: 100px;"></div>
 <div class="pulse-circle" style="top: 30%; left: 10%; width: 130px; height: 130px;"></div>
 <div class="pulse-circle" style="top: 50%; right: 10%; width: 150px; height: 150px;"></div>
@@ -234,13 +233,13 @@
         <button type="submit">Забронировать</button>
       </form>
 
-      <!-- Кнопки для перехода -->
+    
       <div class="links-container">
         <a href="https://benevolent-khapse-931b85.netlify.app/" style="color: #9c27b0;">Главный сайт</a>
         <a href="https://kaleidoscopic-croissant-9e432e.netlify.app/" style="color: #9c27b0;">Каталог</a>
       </div>
 
-      <!-- Инструкция -->
+     
       <div class="instruction">
         <h3>Инструкция:</h3>
         <p>Красный слот — забронирован весь клуб (4 шлема).</p>
@@ -343,21 +342,21 @@
     });
 
     loadBookings();
-    // Инициализация: активируем первый таб и показываем игры
+  
 const defaultTab = document.querySelector(".tab.active") || tabs[0];
 if (defaultTab) {
   defaultTab.classList.add("active");
   displayGames(defaultTab.dataset.category);
 }
 document.getElementById('go-home').addEventListener('click', function() {
-  // Открытие первой ссылки
+
   if (window.Telegram && window.Telegram.WebApp) {
     window.Telegram.WebApp.openLink('https://benevolent-khapse-931b85.netlify.app/', { try_instant_view: true });
   } else {
     window.location.href = 'https://benevolent-khapse-931b85.netlify.app/';
   }
 
-  // Открытие второй ссылки
+
   if (window.Telegram && window.Telegram.WebApp) {
     window.Telegram.WebApp.openLink('https://kaleidoscopic-croissant-9e432e.netlify.app/', { try_instant_view: true });
   } else {
