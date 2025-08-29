@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-/* Первая часть с видеофоном и текстом по центру  */
+/* Первая часть с видеофоном  */
 body {
     font-family: 'Orbitron', sans-serif;
     background-color: #000000;
@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/* 🔹 Видеофон */
+/* 1 Видеофон */
 .video-section {
     position: relative;
     width: 100%;
@@ -32,7 +32,7 @@ body {
     height: 100%;
     opacity: 0.5;
     pointer-events: none;
-    border: none;  /* Убирает рамку вокруг видео */
+    border: none;  
 }
 
 .overlay {
@@ -58,7 +58,7 @@ body {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    border: 2px solid #ff00ff; /* Добавлена неоновая рамка */
+    border: 2px solid #ff00ff; 
     border-radius: 10px;
     text-transform: uppercase;
     font-weight: bold;
@@ -66,7 +66,7 @@ body {
     transition: 0.3s;
     box-shadow: 0 0 15px #ff00ff, 0 0 25px #6c1bb9;
     text-decoration: none;
-    background: transparent; /* Фон убран */
+    background: transparent; 
 }
 
 .header-contacts:hover {
@@ -80,7 +80,7 @@ body {
     margin-top: 20px;
 }
 
-/* 🔹 Изменения для кнопок */
+/* кнопrb */
 .hero-title {
     font-size: 40px;
     font-weight: bold;
@@ -95,11 +95,11 @@ body {
 }
 
 .btn, .btn-book, .btn-select {
-    background: transparent; /* Фон убран */
+    background: transparent; /
     color: rgb(177, 35, 185);
     font-size: 20px;
     padding: 15px 30px;
-    border: 2px solid #ff00ff; /* Добавлена неоновая рамка */
+    border: 2px solid #ff00ff; 
     cursor: pointer;
     border-radius: 10px;
     text-transform: uppercase;
@@ -111,17 +111,15 @@ body {
 .btn:hover, .btn-book:hover, .btn-select:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px #ff00ff, 0 0 30px #8a2be2;
-    background: rgba(255, 0, 255, 0.1); /* Добавлен эффект при наведении */
+    background: rgba(255, 0, 255, 0.1); 
 }
 
-/*Пространство для текста*/
 
-/* Отступы сверху и снизу */
 .spacer {
     height: 50px;
 }
 .text-section.cyberpunk-text {
-    position: relative; /* Обязательно для абсолютного позиционирования кругов */
+    position: relative; 
     margin: 0 auto;
     padding: 40px 30px;
     max-width: 900px;
@@ -129,7 +127,7 @@ body {
     line-height: 1.7;
     text-align: left;
     background: rgba(0, 0, 0, 0.8);
-    overflow: hidden; /* Чтобы круги не вылезали за края */
+    overflow: hidden; /
 }
 
 /* Контейнер для кругов */
@@ -139,7 +137,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Чтобы круги не мешали кликам по тексту */
+    pointer-events: none; 
     z-index: 1;
 }
 
@@ -165,10 +163,10 @@ body {
     }
 }
 
-/* Текст без круга внутри */
+
 .neon-text {
     position: relative;
-    z-index: 2; /* Текст выше фона */
+    z-index: 2; 
     color: #f0f0ff;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -181,30 +179,29 @@ body {
         0 0 50px #ff00ff;
 }
 
-/* Отступы для абзацев */
+
 .text-content p {
     margin-bottom: 20px;
 }
 
 
 
-/* 🔹 Кнопка с Ценой */
+/*  Кнопка с Ценой */
 .main-button {
     background-color: #000000;
     color: #ffffff;
-    font-size: 20px; /* Уменьшил размер шрифта */
+    font-size: 20px; 
     padding: 15px 40px;
-    margin: 30px auto 15px auto; /* Уменьшил верхний отступ, увеличил нижний */
+    margin: 30px auto 15px auto; 
     border: 3px solid #ff00ff;
     cursor: pointer;
     transition: 0.3s;
     box-shadow: 0 0 20px #ff00ff, 0 0 30px #8a2be2;
-    width: 400px; /* Уменьшил ширину кнопки */
+    width: 400px; 
     text-transform: uppercase;
     font-weight: bold;
     display: block;
     text-align: center;
-    /* Убедитесь, что контейнер имеет правильный размер для центрирования */
     margin-left: auto;
     margin-right: auto;
 }
@@ -214,20 +211,19 @@ body {
     box-shadow: 0 0 25px #ff00ff, 0 0 35px #8a2be2;
 }
 
-/* 🔹 Контейнер с кнопками (Время, Будние дни, Выходные дни) */
+/*  Контейнер с кнопками (Время, Будние дни, Выходные дни) */
 .buttons-container {
     display: flex;
     justify-content: center;
-    gap: 205px; /* Интервал между кнопками */
-    margin-top: 10px; /* Отступ сверху */
+    gap: 205px; 
+    margin-top: 10px; 
 }
 
-/* 🔹 Индивидуальный стиль кнопок (Время, Будние, Выходные дни) */
 .toggle-button {
     background: transparent;
     color: rgb(177, 35, 185);
-    font-size: 18px; /* Уменьшил размер шрифта */
-    padding: 12px 25px; /* Уменьшил размер кнопки */
+    font-size: 18px; 
+    padding: 12px 25px; 
     border: 2px solid #ff00ff;
     cursor: pointer;
     border-radius: 10px;
@@ -235,78 +231,74 @@ body {
     font-weight: bold;
     box-shadow: 0 0 15px #ff00ff, 0 0 25px #8a2be2;
     transition: 0.3s ease-in-out;
-    width: 180px; /* Уменьшена ширина кнопки */
+    width: 180px; 
     text-align: center;
 }
-
-/* 🔹 Эффект при наведении на кнопки */
 .toggle-button:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px #ff00ff, 0 0 30px #8a2be2;
-    background: rgba(255, 0, 255, 0.1); /* Эффект фона при наведении */
+    background: rgba(255, 0, 255, 0.1); 
 }
 
-/* 🔹 Контейнер цен */
+/*  Контейнер цен */
 .prices-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px; /* Уменьшил расстояние между колонками */
-    padding: 40px 20px; /* Уменьшил отступы сверху */
+    gap: 30px; 
+    padding: 40px 20px; 
 }
 
-/* 🔹 Блоки с ценами */
+/*  Блоки с ценами */
 .price-block {
     background-color: rgba(138, 43, 226, 0.3);
     border: 3px solid #ff00ff;
-    padding: 25px; /* Уменьшил padding */
-    width: 300px; /* Уменьшил ширину блоков */
+    padding: 25px; 
+    width: 300px; 
     height: auto;
     text-align: center;
     box-shadow: 0 0 15px #ff00ff, 0 0 25px #8a2be2;
     transition: 0.3s;
 }
 
-/* 🔹 Заголовок внутри блоков с ценами */
 .price-block h2 {
-    font-size: 24px; /* Уменьшил размер шрифта */
+    font-size: 24px; 
     color: #ff00ff;
     margin-bottom: 15px;
 }
 
-/* 🔹 Текст внутри блоков с ценами */
 .price-block p {
-    font-size: 19px; /* Уменьшил размер шрифта */
+    font-size: 19px; 
 }
 
-/* 🔹 Линия под ценами */
+
 .price-line {
     width: 50%;
-    margin: 30px auto; /* Уменьшил отступ сверху */
+    margin: 30px auto; 
     padding-bottom: 20px;
     border-bottom: 4px solid #ff00ff;
 }
 
 .price-line p {
-    font-size: 20px; /* Уменьшил размер шрифта */
+    font-size: 20px; 
     color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;
-    margin-top: 5px; /* Отступ сверху */
+    margin-top: 5px; 
 }
 
-/* 🔹 Кнопка аренды клуба */
+/*  Кнопка аренды клуба */
 .club-rental-button {
     background-color: #000000;
     color: #ffffff;
-    font-size: 20px; /* Уменьшил размер шрифта */
-    padding: 15px 40px; /* Уменьшил padding */
-    margin: 50px auto 80px auto; /* Уменьшил верхний отступ, увеличил нижний */
+    font-size: 20px; 
+    padding: 15px 40px; 
+    margin: 50px auto 80px auto; 
     border: 3px solid #ff00ff;
     cursor: pointer;
     transition: 0.3s;
     box-shadow: 0 0 20px #ff00ff, 0 0 30px #8a2be2;
-    width: 400px; /* Уменьшил ширину кнопки */
+    width: 400px; 
     text-transform: uppercase;
     font-weight: bold;
     display: block;
@@ -319,16 +311,16 @@ body {
 }
 
 
-/* 🔹 Видеофон 2 перед секцией VR-шлемов */
+/* Видеофон 2  */
 .video-section:nth-of-type(2) {
-    height: 100vh; /* Растянул второй видеофон */
+    height: 100vh; 
 }
 
 .overlay h2, .overlay p {
     font-size: 24px;
 }
 
-/* 🔹 Раздел игр */
+/*  Раздел игр */
 .games {
     display: flex;
     flex-direction: column;
@@ -339,20 +331,19 @@ body {
     padding: 20px;
 }
 
-/* Заголовок "Библиотека игр" в неоновом фиолетовом цвете */
 .games h2 {
     font-size: 2.5rem;
-    color: #ff00ff; /* фиолетовый */
-    border: 2px solid #ff00ff; /* фиолетовая рамка */
+    color: #ff00ff; 
+    border: 2px solid #ff00ff; 
     padding: 10px;
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Оформление текста после заголовка */
+
 .games p {
-    background-color: rgba(255, 255, 255, 0.1); /* полупрозрачный белый фон */
-    color: #fff; /* белый текст */
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: #fff; 
     padding: 20px;
     border-radius: 8px;
     max-width: 900px;
@@ -361,11 +352,11 @@ body {
     margin-top: 20px;
 }
 
-/* Стиль кнопки с фиолетовой рамкой и фиолетовым текстом */
+
 .games .btn {
-    background-color: transparent; /* прозрачный фон */
-    color: #ff00ff; /* фиолетовый текст */
-    border: 2px solid #ff00ff; /* фиолетовая рамка */
+    background-color: transparent; 
+    color: #ff00ff; 
+    border: 2px solid #ff00ff; 
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
@@ -374,10 +365,10 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* При наведении меняется фон на черный и текст на фиолетовый */
+
 .games .btn:hover {
-    background-color: #000000; /* черный фон при наведении */
-    color: #9b59b6; /* фиолетовый текст при наведении */
+    background-color: #000000; 
+    color: #9b59b6; 
 }
 
 /* Раздел с шлемами */
@@ -386,15 +377,15 @@ body {
     padding: 40px 20px;
     background-color: #000000;
     color: #fff;
-    display: flex; /* Используем flexbox */
-    flex-direction: column; /* Располагаем элементы по вертикали */
-    align-items: center; /* Выравниваем элементы по центру */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
 }
 
 .helmets-section h2 {
     font-size: 35px;
-    color: #9b59b6; /* фиолетовый */
-    border: 2px solid #9b59b6; /* фиолетовая рамка */
+    color: #9b59b6; 
+    border: 2px solid #9b59b6; 
     padding: 10px;
     margin-bottom: 20px;
 }
@@ -402,18 +393,18 @@ body {
 .helmets-section p {
     font-size: 1.5rem;
     color: #fffbfb;
-    margin-bottom: 20px; /* уменьшены отступы для компактности */
+    margin-bottom: 20px; 
 }
 
 .helmets-section .btn-container {
     display: flex;
-    justify-content: center; /* Выравниваем кнопку по центру */
-    align-items: center; /* Выравниваем по вертикали */
-    gap: 10px; /* Добавляем немного отступа между текстом и кнопкой */
+    justify-content: center; 
+    align-items: center;
+    gap: 10px; 
 }
 
 .helmets-section .btn-container .btn {
-    background-color: #9b59b6; /* фиолетовый фон */
+    background-color: #9b59b6; 
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -427,7 +418,7 @@ body {
 }
 
 .helmets-section .btn-container .btn:hover {
-    background-color: #8e44ad; /* более темный фиолетовый при наведении */
+    background-color: #8e44ad; 
 }
 
 .helmets-container {
@@ -444,8 +435,8 @@ body {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
-    width: 300px; /* Увеличенная ширина блока */
-    min-height: 450px; /* Увеличенная высота блока для текста */
+    width: 300px; 
+    min-height: 450px; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -462,73 +453,72 @@ body {
 .helmet img {
     width: 100%;
     height: auto;
-    max-height: 250px; /* Ограничение высоты изображения */
+    max-height: 250px; 
     object-fit: cover;
     border-radius: 10px;
 }
 
 .helmet:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(155, 89, 182, 1); /* усиленное неоновое свечение */
+    box-shadow: 0 0 25px rgba(155, 89, 182, 1); 
 }
 
 /* Общие настройки для мобильных устройств */
 @media (max-width: 768px) {
-    /* Заголовки */
     .header-title {
-        font-size: 30px; /* Уменьшение размера шрифта */
+        font-size: 30px; 
     }
     .header-contacts {
-        font-size: 20px; /* Уменьшение размера шрифта */
-        padding: 8px 15px; /* Уменьшение отступов */
+        font-size: 20px; 
+        padding: 8px 15px; 
     }
     .hero-title {
-        font-size: 30px; /* Уменьшение шрифта */
+        font-size: 30px;
     }
 
     /* Кнопки */
     .btn, .btn-book, .btn-select {
-        font-size: 18px; /* Уменьшение размера шрифта */
-        padding: 12px 25px; /* Уменьшение отступов */
-        width: 250px; /* Ширина кнопок */
+        font-size: 18px; 
+        padding: 12px 25px;
+        width: 250px; 
     }
     .main-button {
-        width: 300px; /* Уменьшение ширины кнопки */
-        font-size: 18px; /* Уменьшение размера шрифта */
+        width: 300px; 
+        font-size: 18px; 
     }
     .toggle-button {
-        width: 150px; /* Уменьшение ширины кнопки */
-        font-size: 16px; /* Уменьшение размера шрифта */
+        width: 150px; 
+        font-size: 16px; 
     }
 
     /* Видеофон */
     .video-section {
-        height: 80vh; /* Высота видеофона для мобильных устройств */
+        height: 80vh; 
     }
     .video-bg {
-        height: 80vh; /* Адаптация фона */
+        height: 80vh; 
     }
 
     /* Текстовые блоки */
     .text-section.cyberpunk-text {
-        padding: 20px 10px; /* Уменьшение отступов */
-        font-size: 16px; /* Уменьшение размера шрифта */
+        padding: 20px 10px; 
+        font-size: 16px; 
     }
 
     /* Блоки с ценами */
     .prices-container {
-        flex-direction: column; /* Выводим блоки в колонку */
-        gap: 15px; /* Уменьшение расстояния между блоками */
+        flex-direction: column; 
+        gap: 15px; 
     }
     .price-block {
-        width: 85%; /* Уменьшение ширины блоков */
+        width: 85%; 
     }
 
     /* Кнопка аренды клуба */
     .club-rental-button {
-        width: 85%; /* Ширина кнопки */
-        font-size: 18px; /* Уменьшение шрифта */
-        padding: 12px 30px; /* Уменьшение отступов */
+        width: 85%; 
+        font-size: 18px; 
+        padding: 12px 30px; 
     }
 
     /* Раздел игр */
@@ -536,16 +526,15 @@ body {
         padding: 10px;
     }
     .games h2 {
-        font-size: 2rem; /* Уменьшение размера заголовка */
+        font-size: 2rem; 
     }
     .games p {
-        font-size: 1rem; /* Уменьшение размера шрифта */
+        font-size: 1rem; 
     }
 }
 
 /* Для экрана менее 480px */
 @media (max-width: 480px) {
-    /* Уменьшение всех шрифтов для очень маленьких экранов */
     .header-title, .header-contacts, .hero-title {
         font-size: 24px;
     }
