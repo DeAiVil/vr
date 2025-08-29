@@ -99,8 +99,8 @@ const games = [
       genre: "Хоррор",
       age: "12",
       players: "1",
-      teaser: "https://www.youtube.com/watch?v=awtSZKCQ_bg", // Актуальный тизер на YouTube
-      image: "https://cdn.akamai.steamstatic.com/steam/apps/529670/header.jpg" // Актуальная обложка из Steam
+      teaser: "https://www.youtube.com/watch?v=awtSZKCQ_bg", 
+      image: "https://cdn.akamai.steamstatic.com/steam/apps/529670/header.jpg" 
     },      
     {
       category: "Horror",
@@ -109,8 +109,8 @@ const games = [
       genre: "Хоррор",
       age: "15",
       players: "1-4",
-      teaser: "https://gamingshogun.com/2021/01/07/devour-teaser-trailer/", // Актуальный трейлер от разработчиков
-      image: "https://cdn.akamai.steamstatic.com/steam/apps/1274570/header.jpg" // Актуальная обложка из Steam
+      teaser: "https://gamingshogun.com/2021/01/07/devour-teaser-trailer/", 
+      image: "https://cdn.akamai.steamstatic.com/steam/apps/1274570/header.jpg" 
     },    
     {
       category: "Horror",
@@ -180,7 +180,7 @@ const games = [
       genre: "Ритм-игра",
       age: "10",
       players: "1",
-      teaser: "https://www.youtube.com/watch?v=7uq5MDRBvIQ", // Ссылка на актуальный трейлер на YouTube
+      teaser: "https://www.youtube.com/watch?v=7uq5MDRBvIQ", 
       image: "https://cdn.akamai.steamstatic.com/steam/apps/1584840/header.jpg"
     },    
     {
@@ -396,8 +396,8 @@ const games = [
   genre: "Ощущение",
   age: "7",
   players: "1",
-  teaser: "https://www.youtube.com/watch?v=rvtm8T14BRE", // Ссылка на трейлер на YouTube
-  image: "https://cdn.akamai.steamstatic.com/steam/apps/512080/header.jpg" // Ссылка на изображение из Steam
+  teaser: "https://www.youtube.com/watch?v=rvtm8T14BRE", 
+  image: "https://cdn.akamai.steamstatic.com/steam/apps/512080/header.jpg" 
 },
 {
   category: "Relax",
@@ -406,8 +406,8 @@ const games = [
   genre: "Ощущение",
   age: "7",
   players: "1",
-  teaser: "https://www.youtube.com/watch?v=qnVQFSUIDjE", // Ссылка на трейлер на YouTube
-  image: "https://cdn.cloudflare.steamstatic.com/steam/apps/517160/header.jpg" // Ссылка на изображение из Steam
+  teaser: "https://www.youtube.com/watch?v=qnVQFSUIDjE", 
+  image: "https://cdn.cloudflare.steamstatic.com/steam/apps/517160/header.jpg" 
 },
 {
   category: "Relax",
@@ -416,8 +416,8 @@ const games = [
   genre: "Ощущение",
   age: "10",
   players: "1",
-  teaser: "https://www.youtube.com/watch?v=TGAJjXHMqZ0", // Ссылка на трейлер на YouTube
-  image: "https://cdn.cloudflare.steamstatic.com/steam/apps/499620/header.jpg" // Ссылка на изображение из Steam
+  teaser: "https://www.youtube.com/watch?v=TGAJjXHMqZ0", 
+  image: "https://cdn.cloudflare.steamstatic.com/steam/apps/499620/header.jpg" 
 },
 
 //Экшен 
@@ -589,7 +589,6 @@ function displayGames(category) {
     });
 }
 
-// Навешиваем обработчики на табы
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
     document.querySelector(".tab.active").classList.remove("active");
@@ -598,7 +597,7 @@ tabs.forEach(tab => {
   });
 });
 
-// Обновление при вводе в фильтры и поиск
+// Обновление при вводе в фильтры
 ["searchInput", "genreFilter", "ageFilter", "playersFilter"].forEach(id => {
   document.getElementById(id).addEventListener("input", () => {
     const activeTab = document.querySelector(".tab.active");
@@ -606,21 +605,19 @@ tabs.forEach(tab => {
   });
 });
 
-// Инициализация: активируем первый таб и показываем игры
 const defaultTab = document.querySelector(".tab.active") || tabs[0];
 if (defaultTab) {
   defaultTab.classList.add("active");
   displayGames(defaultTab.dataset.category);
 }
 document.getElementById('go-home').addEventListener('click', function() {
-  // Открытие первой ссылки
+  
   if (window.Telegram && window.Telegram.WebApp) {
     window.Telegram.WebApp.openLink('https://680cf2795c30c4bd8894843f--rainbow-cocada-868631.netlify.app/', { try_instant_view: true });
   } else {
     window.location.href = 'https://680cf2795c30c4bd8894843f--rainbow-cocada-868631.netlify.app/';
   }
 
-  // Открытие второй ссылки
   if (window.Telegram && window.Telegram.WebApp) {
     window.Telegram.WebApp.openLink('https://musical-hotteok-033703.netlify.app/', { try_instant_view: true });
   } else {
